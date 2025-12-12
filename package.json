@@ -1,0 +1,109 @@
+{
+	"name": "si-symbol-search",
+	"displayName": "SourceInsight Symbol Search",
+	"description": "Search symbols by multiple prefix words, case-insensitive and order-free.",
+	"version": "1.1.9",
+	"repository": "https://gitee.com/qinzxx/si-like-search",
+	"keywords": [
+		"outline",
+		"search",
+		"SourceInsight"
+	],
+	"author": {
+		"name": "zxqin"
+	},
+	"icon": "happy-128.png",
+	"publisher": "zxqin",
+	"engines": {
+		"vscode": "^1.84.2"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:si_like_search.search_doc_symbols",
+		"onCommand:si_like_search.search_workspace_symbols",
+		"onCommand:si_like_search.jia_gen_compdb"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "si_like_search.search_doc_symbols",
+				"category": "SI-like Symbol",
+				"title": "SI-like Symbol Search in Accessible View"
+			},
+			{
+				"command": "si_like_search.search_workspace_symbols",
+				"category": "SI-like Symbol",
+				"title": "Search in Workspace"
+			},
+			{
+				"command": "si_like_search.jia_gen_compdb",
+				"category": "SI-like Symbol",
+				"title": "Jia Generate Compdb"
+			},
+			{
+				"command": "si_like_search.refresh",
+				"category": "SI-like Symbol",
+				"title": "Refresh Symbol Tree",
+				"icon": {
+					"light": "resources/icons/light/refresh.svg",
+					"dark": "resources/icons/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "si_like_search.search",
+				"category": "SI-like Symbol",
+				"title": "Search Symbol Tree",
+				"icon": {
+					"light": "resources/icons/light/search-view.svg",
+					"dark": "resources/icons/dark/search-view.svg"
+				}
+			}
+		],
+		"keybindings": [
+			{
+				"command": "si_like_search.search_doc_symbols",
+				"key": "ctrl+'",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "si_like_search.search_workspace_symbols",
+				"key": "alt+'",
+				"when": "editorTextFocus"
+			}
+		],
+		"views": {
+			"explorer": [
+				{
+					"id": "si_like_search_view",
+					"name": "Symbol Tree"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "si_like_search.refresh",
+					"when": "view == si_like_search_view",
+					"group": "navigation"
+				},
+				{
+					"command": "si_like_search.search",
+					"when": "view == si_like_search_view",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.50.0",
+		"typescript": "^4.0.3",
+		"vsce": "^2.3.3"
+	}
+}
