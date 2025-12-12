@@ -29,7 +29,6 @@ vsce --version
 ```
 
 Install project's dependencies:
-安装项目依赖和编译：
 ```bash
 npm install
 ```
