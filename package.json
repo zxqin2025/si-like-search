@@ -1,13 +1,16 @@
 {
 	"name": "si-symbol-search",
 	"displayName": "SourceInsight Symbol Search",
-	"description": "Search symbols by multiple prefix words, case-insensitive and order-free.",
-	"version": "1.1.9",
+	"description": "Search symbols by multiple keywords, case-insensitive and order-free.",
+	"version": "1.1.11",
 	"repository": "https://gitee.com/qinzxx/si-like-search",
 	"keywords": [
+		"symbol",
 		"outline",
-		"search",
-		"SourceInsight"
+		"navigation",
+		"source insight",
+		"workspace",
+		"search"
 	],
 	"author": {
 		"name": "zxqin"
@@ -20,11 +23,7 @@
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-		"onCommand:si_like_search.search_doc_symbols",
-		"onCommand:si_like_search.search_workspace_symbols",
-		"onCommand:si_like_search.jia_gen_compdb"
-	],
+	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
@@ -65,20 +64,18 @@
 		"keybindings": [
 			{
 				"command": "si_like_search.search_doc_symbols",
-				"key": "ctrl+'",
-				"when": "editorTextFocus"
+				"key": "ctrl+'"
 			},
 			{
 				"command": "si_like_search.search_workspace_symbols",
-				"key": "alt+'",
-				"when": "editorTextFocus"
+				"key": "alt+'"
 			}
 		],
 		"views": {
 			"explorer": [
 				{
 					"id": "si_like_search_view",
-					"name": "Symbol Tree"
+					"name": "Si Like Symbol Tree"
 				}
 			]
 		},
@@ -95,7 +92,17 @@
 					"group": "navigation"
 				}
 			]
-		}
+		},
+		"configuration": {
+			"title": "SourceInsight like Search",
+			"properties": {
+				"si_like_search.enablePreview": {
+					"type": "boolean",
+					"default": true,
+					"description": "If enabled then preview symbols when search."
+				}
+			}
+ 		}
 	},
 	"scripts": {
 		"vscode:prepublish": "tsc -p ./",

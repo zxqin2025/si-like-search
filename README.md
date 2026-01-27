@@ -3,7 +3,7 @@
 - Ctrl-Shift-P to call out command panel.
 - Input `si`，choose `SI-like Symbol Search`，press Enter to search symbols。
 
-Search seems like `Source Insight`: 
+Search seems like `Source Insight`:
 You can input searval words which split with whitespaces, and the symbol should match every keyword's prefix.
 
 This plugin can serve as a supplement to the default `Ctrl-Shift-O` search method in VSCode.

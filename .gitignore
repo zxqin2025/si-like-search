@@ -3,3 +3,9 @@ out/
 
 # personal tmp file
 zx
+
+# vscode extension archive
+*.vsix
+
+# vim swap file
+*.swp

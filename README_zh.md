@@ -11,13 +11,15 @@ Ctrl-Shift-P 调出 命令面版，输入si，选择`SI-like Symbol Search`，�
 
 两张示例截图：
 
-![](vscode_command.png)
+![](https://github.com/zxqin2025/si-like-search/blob/master/vscode_command.png)
 
-![](search_demo.png)
+![](https://github.com/zxqin2025/si-like-search/blob/master/search_demo.png)
 
 
 # Release
 
++- version 1.1.11: feature: 搜索和选择符号时，支持预览符号。
++- version 1.1.10: feature: 扩大搜索快捷键和搜索命令的生效范围（不再局限于 "when": "editorTextFocus"）。
 - version 1.1.9: feature: 修改符号方式为关键词匹配；符号图标使用vscode内建的图标；去掉quick pick里多余的信息显示（代码行号、符号类型等）。
 - version 1.1.8: feature: 提示使用中文；添加一个简单的view示图（未完成）
 - version 1.1.7: feature: 新增命令，支持通过jia工具为多个workspace folder生成compdb
@@ -81,14 +83,6 @@ Do you want to continue? [y/N] y
 
 命令 或 UI 安装：
 ```bash
-code --install-extension si-symbol-search-1.0.0.vsix
+code --install-extension si-symbol-search*.vsix
 ```
-
-**打包时报错图片路径？**
-```bash
-# vsce package --baseContentUrl "https://your.repo.url" --baseImagesUrl "https://your.repo.url/images"
-vsce package --baseContentUrl "https://gitee.com/qinzxx/si-like-search" --baseImagesUrl "https://gitee.com/qinzxx/si-like-search"
-```
-
-TODO: **扩展页里README显示不了截图？**
 
