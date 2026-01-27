@@ -4,8 +4,6 @@
  */
 
 import * as vscode from 'vscode';
-import * as path from 'path';
-
 
 /**
  * Extends QuickPickItem.
@@ -65,17 +63,41 @@ async function searchCmdInWorkspace() {
 	pickSymbol(workspaceSymbols, SearchType.SearchInWorkspace);
 }
 
+/**
+ * @param filePath - file path
+ * @returns file basename
+ */
+function getBasename(filePath: string): string {
+    const sepIndex = Math.max(filePath.lastIndexOf('/'), filePath.lastIndexOf('\\'));
+    return sepIndex === -1 ? filePath : filePath.slice(sepIndex + 1);
+}
+
+/**
+ * @param filePath - file path
+ * @returns file dirname
+ */
+function getDirname(filePath: string): string {
+    const sepIndex = Math.max(filePath.lastIndexOf('/'), filePath.lastIndexOf('\\'));
+    if (sepIndex === -1) {
+        return '.';
+    }
+    /* handle root path case */
+    if (sepIndex === 0) {
+        return filePath.charAt(1) === ':' ? filePath.slice(0, 2) : filePath.slice(0, 1);
+    }
+    return filePath.slice(0, sepIndex);
+}
 
 function truncateToSrcDir(filePath: string): string {
-	let currentPath = filePath;
+    let currentPath = filePath;
 
-	/* if current path is already src or root path, stop loop */
-	while (path.basename(filePath) !== 'src' && filePath !== path.dirname(filePath)) {
-		currentPath = path.dirname(filePath);
-	}
+    /* if current path is already src or root path, stop loop */
+    while (getBasename(currentPath) !== 'src' && currentPath !== getDirname(currentPath)) {
+        currentPath = getDirname(currentPath);
+    }
 
-	/* if curresrc path found, return src path; otherwise return original path */
-	return path.basename(currentPath) === 'src' ? currentPath : filePath;
+    /* if src path found, return src path; otherwise return original path */
+    return getBasename(currentPath) === 'src' ? currentPath : filePath;
 }
 
 function genCompdbForMultipleRootDirs() {
@@ -204,7 +226,7 @@ function pickSymbol(symbols: vscode.DocumentSymbol[] | vscode.SymbolInformation[
 	const quickPick = vscode.window.createQuickPick<DocumentSymbolPickItem>();
 	quickPick.items = [];
 	if (searchType === SearchType.SearchInCurrentFile) {
-		quickPick.placeholder = 'Search symbols in current file";
+		quickPick.placeholder = 'Search symbols in current file';
 
 		flatSymbols = getDocumentSymbols(symbols as vscode.DocumentSymbol[]);
 	} else {
